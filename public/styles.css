@@ -1,0 +1,189 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.17 0.005 120);
+  --foreground: oklch(0.94 0.01 90);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.65 0.19 29);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.26 0.005 120);
+  --secondary-foreground: oklch(0.94 0.01 90);
+  --muted: oklch(0.24 0.005 120);
+  --muted-foreground: oklch(0.65 0.012 110);
+  --accent: oklch(0.3 0.005 120);
+  --accent-foreground: oklch(0.94 0.01 90);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.34 0.006 120);
+  --input: oklch(0.34 0.006 120);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --scene-sky: #bccac6;
+  --scene-ground: #69735a;
+  --scene-stone: #414b43;
+  --scene-tracer: #f3c47c;
+  --scene-accent: #de684f;
+  --hud-surface: oklch(0.16 0.01 140 / 0.78);
+  --hud-light: oklch(0.96 0.01 100);
+  --hud-faded: oklch(0.87 0.02 110 / 0.65);
+  --ally: oklch(0.82 0.13 120);
+  --scrim: oklch(0.1 0.01 130 / 0.4);
+  --scene-shade: linear-gradient(90deg, oklch(0.13 0.01 130 / 0.68), transparent 60%), linear-gradient(0deg, oklch(0.12 0.01 130 / 0.55), transparent 32%, transparent 75%, oklch(0.12 0.01 130 / 0.25));
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Barlow', sans-serif;
+  }
+}
+
+.game-shell { height:100dvh; min-height:600px; display:flex; flex-direction:column; overflow:hidden; background:var(--background); }
+.is-ready .vehicle-status,.is-ready .weapon-status,.is-ready .touch-controls {visibility:hidden;}
+.game-header { height:76px; flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 30px; border-bottom:1px solid var(--border); }
+.brand { display:flex; align-items:center; gap:12px; font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800; line-height:1; }
+.brand-mark { display:grid; place-items:center; width:38px; height:42px; border:1px solid var(--primary); color:var(--primary); clip-path:polygon(0 0,100% 0,100% 75%,50% 100%,0 75%); }
+.brand small { display:block; font-family:'Barlow',sans-serif; font-size:8px; font-weight:500; margin-top:6px; letter-spacing:3px; color:var(--muted-foreground); }
+.operation-heading { display:flex; align-items:center; gap:11px; font-size:10px; font-weight:600; letter-spacing:1.4px; }
+.status-dot { display:inline-block; width:5px; height:5px; background:var(--ally); border-radius:50%; }
+.header-divider { height:14px; width:1px; background:var(--border); margin:0 10px; }
+.header-tools { display:flex; gap:8px; align-items:center; color:var(--muted-foreground); }.connection {display:flex;align-items:center;gap:7px;font-size:10px;margin-right:14px;}
+.battlefield { position:relative; flex:1; min-height:0; overflow:hidden; background:var(--scene-sky); color:var(--hud-light); }
+.scene-shade {position:absolute;inset:0;pointer-events:none;background:var(--scene-shade);}
+.hud-top {position:absolute;top:32px;left:32px;right:32px;display:flex;justify-content:space-between;pointer-events:none;}
+.eyebrow {font-size:9px;font-weight:600;letter-spacing:2px;color:var(--hud-faded);}
+.hud-top h2 {font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600;margin:5px 0 10px;}
+.hud-top p {display:flex;align-items:center;gap:7px;font-size:11px;color:var(--hud-faded);}.hud-top b {color:var(--hud-light);margin-left:16px;}
+.timer {text-align:right;}.timer strong {display:block;font:500 32px 'Barlow Condensed',sans-serif; margin-top:3px;}.timer-status {font-size:8px;letter-spacing:1px;display:flex;gap:6px;justify-content:flex-end;align-items:center;margin-top:4px;}
+.compass {position:absolute;top:26px;left:50%;transform:translateX(-50%);display:flex;gap:25px;font-size:10px;color:var(--hud-faded);border-bottom:1px solid var(--hud-faded);padding-bottom:14px;}.compass b {color:var(--hud-light);}.compass i {position:absolute;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--primary);bottom:-8px;left:50%;}
+.zone-label {position:absolute;top:110px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;font-size:8px;letter-spacing:1.2px;white-space:nowrap;}.zone-label span {color:var(--hud-faded);font-size:7px;margin-left:8px;}
+.ready-panel {position:absolute;top:27%;left:7%;}.ready-panel .eyebrow {display:flex;align-items:center;gap:10px;font-size:9px;}.red-line {width:22px;height:2px;background:var(--primary);}.ready-panel h1 {font-family:'Barlow Condensed',sans-serif;font-size:100px;line-height:0.84;font-weight:800;margin:24px 0 20px;}.ready-panel h1 span {color:var(--primary);}.ready-panel p {font-size:20px;font-family:'Barlow Condensed',sans-serif;}.mission-brief {font-size:8px;letter-spacing:1.7px;color:var(--hud-faded);margin:12px 0 28px;}.mission-brief span {margin:0 10px;}.deploy-button {height:48px;padding:0 23px;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:1.5px;gap:27px;}.independent-label {font-size:7px;color:var(--hud-faded);letter-spacing:1.3px;margin-top:14px;}
+.lower-hud {position:absolute;bottom:28px;left:32px;right:32px;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none;}.vehicle-status {width:185px;}.vehicle-status h3 {font-family:'Barlow Condensed',sans-serif;font-size:25px;font-weight:600;margin-top:3px;}.vehicle-status h3 span {font:9px 'Barlow',sans-serif;color:var(--hud-faded);margin-left:6px;letter-spacing:1px;}.armor {display:flex;align-items:center;gap:8px;font-size:8px;margin-top:15px;}.armor b {margin-left:auto;font-size:12px;font-weight:500;}
+progress {display:block;width:100%;height:3px;margin-top:7px;border:0;appearance:none;background:var(--hud-faded);}progress::-webkit-progress-bar {background:var(--hud-faded);}progress::-webkit-progress-value {background:var(--ally);}progress::-moz-progress-bar {background:var(--ally);}
+.speed {display:flex;align-items:baseline;gap:6px;margin-top:9px;}.speed strong {font:500 40px 'Barlow Condensed',sans-serif;min-width:36px;}.speed>span {font-size:10px;color:var(--hud-faded);}.speed .gear {margin-left:auto;font:500 20px 'Barlow Condensed',sans-serif;color:var(--hud-light);text-align:right;}.gear small {font:6px 'Barlow',sans-serif;display:block;color:var(--hud-faded);margin-top:2px;letter-spacing:1px;}
+.weapon-status {display:flex;gap:18px;align-items:center;border-left:1px solid var(--hud-faded);padding-left:24px;}.weapon-icon {color:var(--hud-faded);}.weapon-status h3 {font:600 28px 'Barlow Condensed',sans-serif;}.weapon-status h3 span {font:8px 'Barlow',sans-serif;border:1px solid var(--hud-faded);padding:2px 4px;margin-left:7px;}.weapon-status p {font-size:13px;color:var(--hud-faded);}.weapon-status p strong {font:500 34px 'Barlow Condensed',sans-serif;color:var(--hud-light);}.weapon-status p span {margin-left:17px;font-size:7px;color:var(--ally);letter-spacing:1px;}
+.minimap {width:164px;border:1px solid var(--hud-faded);background:var(--hud-surface);}.map-grid {height:137px;position:relative;overflow:hidden;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:27px 27px;}.map-road {position:absolute;left:45%;top:0;height:100%;width:15px;background:var(--scene-ground);transform:rotate(-15deg);opacity:0.5;}.map-sector {position:absolute;left:45%;top:30%;border:1px solid var(--ally);color:var(--ally);font-size:10px;padding:4px 7px;}.map-player {position:absolute;color:var(--ally);font-size:13px;}.map-enemy {position:absolute;color:var(--primary);font-size:9px;}.map-north {position:absolute;top:8px;right:8px;font-size:8px;}.map-caption {border-top:1px solid var(--border);padding:7px;font-size:7px;letter-spacing:1px;display:flex;justify-content:space-between;color:var(--hud-faded);}
+.reticle {position:absolute;left:50%;top:50%;width:56px;height:56px;transform:translate(-50%,-50%);pointer-events:none;}.reticle span {position:absolute;background:var(--hud-light);}.reticle span:nth-child(1) {width:1px;height:16px;left:27px;top:0;}.reticle span:nth-child(2) {width:1px;height:16px;left:27px;bottom:0;}.reticle span:nth-child(3) {width:16px;height:1px;top:27px;left:0;}.reticle span:nth-child(4) {width:16px;height:1px;top:27px;right:0;}.reticle i {position:absolute;left:26px;top:26px;width:3px;height:3px;background:var(--primary);}.range-label {position:absolute;left:50%;top:calc(50% + 45px);transform:translateX(-50%);font-size:10px;}.range-label span {display:block;font-size:8px;color:var(--hud-faded);margin-top:5px;}.hit-notice {position:absolute;top:61%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:11px;color:var(--ally);letter-spacing:1px;}.pause-button {position:absolute;right:30px;top:145px;color:var(--hud-light);background:var(--hud-surface);}
+.result-overlay {position:absolute;inset:0;background:var(--scrim);display:grid;place-items:center;}.result-overlay section {text-align:center;}.result-overlay h2 {font:700 48px 'Barlow Condensed',sans-serif; margin:15px 0;}.result-overlay p {font-size:14px;color:var(--hud-faded);margin-bottom:25px;}
+.game-footer {height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;flex-shrink:0;border-top:1px solid var(--border);}.control-hints {display:flex;align-items:center;gap:20px;}.control-hints>span {display:flex;align-items:center;gap:5px;font-size:8px;color:var(--muted-foreground);letter-spacing:0.7px;}.control-hints i {height:13px;width:1px;background:var(--border);}.control-hints kbd {font:8px 'Barlow',sans-serif;border:1px solid var(--border);padding:3px 4px;border-radius:2px;color:var(--foreground);}.footer-build {font-size:8px;color:var(--muted-foreground);letter-spacing:1px;}.footer-build span {color:var(--primary);margin:0 5px;}.enemy-tag {font-size:8px;color:var(--primary);white-space:nowrap;font-weight:700;letter-spacing:1px;}.enemy-tag span {display:block;text-align:center;font-size:20px;}.loading-model {padding:8px;background:var(--hud-surface);font-size:12px;color:var(--hud-light);white-space:nowrap;}.touch-controls {display:none;}
+@media (min-height:1100px) {.ready-panel {top:34%;}.ready-panel h1 {font-size:120px;}}
+@media (max-width:900px) {.operation-heading {display:none;}.compass {gap:16px;}.weapon-status {padding-left:15px;gap:10px;}.control-hints {gap:10px;}}
+@media (max-width:600px) {.game-shell {min-height:560px;}.game-header {height:62px;padding:0 16px;}.brand {font-size:23px;}.brand-mark {width:30px;height:34px;}.brand small {font-size:6px;}.connection {display:none;}.header-tools {gap:0;}.hud-top {top:20px;left:16px;right:16px;}.hud-top h2 {font-size:19px;}.hud-top p {font-size:8px;gap:4px;}.hud-top b {margin-left:4px;}.eyebrow {font-size:7px;}.timer strong {font-size:26px;}.timer-status {font-size:6px;}.compass {top:105px;gap:18px;font-size:8px;}.zone-label {top:152px;font-size:7px;}.zone-label span {display:none;}.ready-panel {top:30%;left:7%;}.ready-panel h1 {font-size:72px;margin:17px 0 15px;}.ready-panel p {font-size:18px;}.mission-brief {font-size:6px;margin-bottom:19px;}.ready-panel .eyebrow {font-size:7px;}.deploy-button {height:43px;}.independent-label {font-size:6px;}.lower-hud {bottom:110px;left:16px;right:16px;}.vehicle-status {width:125px;}.vehicle-status h3 {font-size:20px;}.vehicle-status h3 span {font-size:7px;}.armor {font-size:6px;margin-top:8px;gap:5px;}.armor b {font-size:10px;}.speed strong {font-size:28px;}.speed .gear {font-size:16px;}.gear small {font-size:5px;}.minimap {width:107px;}.map-grid {height:92px;background-size:20px 20px;}.map-caption {font-size:5px;padding:5px;}.weapon-status {position:absolute;bottom:-78px;left:50%;transform:translateX(-50%);border:0;padding:0;}.weapon-icon {display:none;}.weapon-status .eyebrow {font-size:6px;}.weapon-status h3 {font-size:18px;}.weapon-status p strong {font-size:24px;}.weapon-status p {font-size:9px;}.weapon-status p span {font-size:5px;margin-left:6px;}.touch-controls {display:flex;position:absolute;bottom:18px;left:16px;right:16px;align-items:flex-end;justify-content:space-between;}.touch-pad {width:108px;display:grid;grid-template-columns:repeat(3,34px);gap:3px;touch-action:none;}.touch-pad button {width:34px;height:34px;background:var(--hud-surface);color:var(--hud-light);border:1px solid var(--hud-faded);border-radius:3px;}.touch-pad button:first-child {grid-column:2;}.touch-pad button:nth-child(2) {grid-row:2;grid-column:1;}.touch-pad button:nth-child(3) {grid-row:2;grid-column:2;}.touch-pad button:nth-child(4) {grid-row:2;grid-column:3;}.touch-fire {width:52px;height:52px;border-radius:50%;touch-action:none;}.touch-fire svg {width:24px;height:24px;}.game-footer {height:32px;padding:0 16px;}.control-hints {display:none;}.footer-build {font-size:6px;}.game-footer:before {content:'OPERAÇÃO HORIZONTE';font-size:6px;color:var(--muted-foreground);letter-spacing:1px;}.pause-button {right:16px;top:158px;}.result-overlay h2 {font-size:32px;}.hit-notice {font-size:8px;}}
+@media(prefers-reduced-motion:reduce) {* {scroll-behavior:auto;transition:none!important;}}
