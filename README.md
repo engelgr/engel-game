@@ -7,7 +7,7 @@
 1. Abra `index.html` em um navegador moderno. Se preferir servir os arquivos localmente, execute `python3 -m http.server 8000` na pasta do projeto e acesse `http://localhost:8000`.
 2. Selecione **Iniciar operação**.
 3. Use o joystick virtual no celular ou o teclado no computador para conduzir o blindado até o setor indicado.
-4. No computador, mire com o mouse e dispare com **Espaço** ou clique. No celular, use o botão de disparo.
+4. No computador, mire com o mouse e dispare com **Espaço** ou clique. No celular, toque ou arraste no campo de batalha para mirar e use o botão de disparo; também é possível arrastar o próprio botão enquanto dispara.
 5. Permaneça no ponto de captura até completar o progresso. Elimine ou afaste os inimigos que disputam o setor.
 6. Ao concluir uma fase, escolha **Próxima fase**. Se o blindado for destruído, escolha **Tente novamente** para reiniciar a fase atual.
 
@@ -18,8 +18,8 @@
 | Avançar / recuar | `W` / `S` | Joystick virtual para cima / para baixo |
 | Virar | `A` / `D` | Joystick virtual para a esquerda / para a direita |
 | Acelerar | `Shift` | — |
-| Mirar | Mover o mouse | — |
-| Disparar | `Espaço` | Botão de disparo |
+| Mirar | Mover o mouse | Tocar ou arrastar no campo de batalha |
+| Disparar | `Espaço` ou clique | Botão de disparo (arraste para mirar enquanto dispara) |
 | Tentar novamente após ser derrotado | `R` | Botão **Tente novamente** |
 
 ## Campanha
@@ -36,9 +36,9 @@ O número de inimigos aumenta conforme a campanha avança. A primeira fase come�
 
 ## Regras e interface
 
-- Em telas de até 700 px de largura, o jogo mostra o joystick e o botão de disparo para toque.
-- Em telas mais largas, o jogo usa `W`, `A`, `S`, `D` e `Espaço`; o mouse controla a mira.
-- A interface muda de modo automaticamente se a largura da tela mudar.
+- O jogo detecta telas sensíveis ao toque mesmo quando o celular está na horizontal e mostra o joystick e o botão de disparo.
+- Em computadores, o jogo usa `W`, `A`, `S`, `D` e `Espaço`; o mouse controla a mira.
+- O modo de controles também se adapta quando a tela é redimensionada ou girada.
 - Conquiste o ponto indicado ao entrar no círculo e manter o setor livre de inimigos próximos.
 - Os disparos consomem munição e têm intervalo de recarga.
 - O blindado tem integridade limitada; impactos inimigos causam dano.
