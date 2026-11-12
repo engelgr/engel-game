@@ -1,29 +1,13 @@
-import { Suspense, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Environment, Lightformer, Html, useGLTF } from '@react-three/drei';
+import { Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
-import vehicleAsset from '@/assets/armored-vehicle.glb.asset.json';
 import { drive, fire, tick, type CombatState } from '@/lib/combat';
 import { shotAudio } from '@/lib/game-audio';
 import { APC } from './APC';
 
 export interface Inputs { keys: Set<string>; aim: number; fire: boolean; throttle: number; steer: number }
 export interface Palette { sky: string; ground: string; stone: string; accent: string; enemy: string; tracer: string }
-
-function Vehicle({ enemy = false }: { enemy?: boolean }) {
-  const { scene } = useGLTF(vehicleAsset.url);
-  const object = useMemo(() => {
-    const clone = scene.clone(true);
-    const box = new THREE.Box3().setFromObject(clone);
-    const size = box.getSize(new THREE.Vector3());
-    clone.scale.multiplyScalar(5.7 / Math.max(size.x, size.z, 0.001));
-    const scaled = new THREE.Box3().setFromObject(clone), center = scaled.getCenter(new THREE.Vector3());
-    clone.position.set(-center.x, -scaled.min.y, -center.z);
-    clone.traverse(o => { if (o instanceof THREE.Mesh) { o.castShadow=true; o.receiveShadow=true; if(enemy && o.material instanceof THREE.MeshStandardMaterial) { o.material=o.material.clone(); o.material.color.multiplyScalar(0.65); } } });
-    return clone;
-  }, [scene, enemy]);
-  return <primitive object={object} />;
-}
 
 function Ground({ palette }: { palette: Palette }) {
   const { geo, map } = useMemo(() => {
@@ -55,6 +39,7 @@ export function Scene({ state, inputs, palette, sync }: { state: React.RefObject
   const flash=useRef<THREE.Mesh>(null);
   const accumulator=useRef(0), shotLife=useRef(0);
   const cameraPos=useMemo(()=>new THREE.Vector3(),[]), look=useMemo(()=>new THREE.Vector3(),[]);
+  const enemyPalette=useMemo(()=>({...palette,ground:`#${new THREE.Color(palette.ground).multiplyScalar(0.62).getHexString()}`,stone:`#${new THREE.Color(palette.stone).multiplyScalar(0.62).getHexString()}`}),[palette]);
   useFrame(({camera}, rawDt)=> {
     const dt=Math.min(rawDt,0.05), s=state.current, input=inputs.current;
     if(s.phase==='playing') {
@@ -83,12 +68,10 @@ export function Scene({ state, inputs, palette, sync }: { state: React.RefObject
     <Environment resolution={64}><Lightformer intensity={1.5} position={[0,20,0]} scale={[100,100,1]} rotation-x={-Math.PI/2}/></Environment>
     <Ground palette={palette}/>
     <group ref={player}><APC palette={palette}/></group>
-    <Suspense fallback={null}>
-      {state.current.enemies.map(e=><group key={e.id} ref={g=>{if(g) enemies.current.set(e.id,g); else enemies.current.delete(e.id);}} position={[e.x,0,e.z]}>
-        <Vehicle enemy/>
-        <mesh position={[0,4,0]} rotation-z={Math.PI/4}><ringGeometry args={[0.32,0.42,4]}/><meshBasicMaterial color={palette.accent} side={THREE.DoubleSide}/></mesh>
-      </group>)}
-    </Suspense>
+    {state.current.enemies.map(e=><group key={e.id} ref={g=>{if(g) enemies.current.set(e.id,g); else enemies.current.delete(e.id);}} position={[e.x,0,e.z]}>
+      <APC palette={enemyPalette}/>
+      <mesh position={[0,4,0]} rotation-z={Math.PI/4}><ringGeometry args={[0.32,0.42,4]}/><meshBasicMaterial color={palette.accent} side={THREE.DoubleSide}/></mesh>
+    </group>)}
     <mesh ref={tracer} visible={false}><boxGeometry args={[0.045,0.045,1]}/><meshBasicMaterial color={palette.tracer}/></mesh>
     <mesh ref={flash} visible={false}><sphereGeometry args={[0.35,8,8]}/><meshBasicMaterial color={palette.tracer}/></mesh>
     <mesh position={[0,0.1,62]} rotation-x={-Math.PI/2}><ringGeometry args={[13.8,14,64]}/><meshBasicMaterial color={palette.accent}/></mesh>
