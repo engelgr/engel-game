@@ -1,0 +1,48 @@
+.mobile .joystick {
+  position: relative;
+  flex: 0 0 132px;
+  width: 132px;
+  height: 132px;
+  padding: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #263124cc, #151d18dd);
+  touch-action: none;
+  user-select: none;
+}
+
+.mobile .joystick::before {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #d5ddb04d;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.joystick-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #d5ddb0b3;
+  border-radius: 50%;
+  background: #89966cdd;
+  box-shadow: 0 3px 12px #0008;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.joystick.is-active .joystick-knob {
+  background: #bfce88;
+}
+
+.mobile #fireTouch {
+  width: 66px;
+  height: 66px;
+  border-color: #e19a6c;
+  background: #8d4836dd;
+  font-size: 26px;
+  touch-action: none;
+  user-select: none;
+}
